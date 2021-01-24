@@ -1,36 +1,50 @@
-clearInterval(timer);
+
 var timer = null
 var countdownNumber = 10
-var changeState = function (state) {
-	document.body.className = 'body-state'+state;
 
-	if (state == 2) {
+var changeState = function (state) {
+	document.body.className = 'body-state'+ state;
+	clearInterval(timer);
+	countdownNumber = 10;
+	document.getElementById('countdown').innerHTML = countdownNumber;
+
+
+if (state==2) {
+		countdownNumber = 10;
 		timer = setInterval(function(){
-			document.getElementById('countdown').innerHTML = countdownNumber = countdownNumber-1;
+			countdownNumber = countdownNumber-1;
+			document.getElementById('countdown').innerHTML = countdownNumber;
 		if (countdownNumber <= 0) {
 			changeState(3);
 		}
 		},1000);
 	} 
-	else if (state==3){
-		var success = setTimeout(function(){
-			var randomNumber = Math.round(Math.random()*10);
+else if (state==3){
 
-			console.log('randomNumber ',randomNumber)
+		var success = setTimeout(function()
+		{
+				var randomNumber = Math.round(Math.random()*10);
 
-			if (randomNumber > 6){
+				console.log('randomNumber ',randomNumber)
+
+			if (randomNumber > 4){
+				
 				changeState(4);
+				success = true;
 			}
 			else {
 				changeState(5);
+				success = false;
 			}
-		}, 2000);
+		},1000);
 	}
-	else if (state==4){
-			alert:"ON MARS YOU GO";
+
+else if (state==4){
+		alert("ON MARS YOU GO");
 	}
-	else if (state==5){
-			alert:"ON Earth you stay";
+
+else if (state==5){
+		alert("ON Earth you stay");
 	}
 		
 
